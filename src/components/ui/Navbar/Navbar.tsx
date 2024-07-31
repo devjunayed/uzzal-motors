@@ -1,13 +1,15 @@
+import Link from "next/link";
+
 const Navbar = () => {
 
     const links = <>
-        <li><a href="">Home</a></li>
-        <li><a href="">About</a></li>
-        <li><a href="">Contact</a></li>
+        <li><Link href="/">Home</Link></li>
+        <li><Link href="/about">About</Link></li>
+        <li><Link href="/contact">Contact</Link></li>
     </>
 
   return (
-    <div className="navbar text-black rounded-b-3xl bg-[#FFB508] shadow-sm">
+    <div className="navbar text-black rounded-b-3xl bg-um-primary shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
