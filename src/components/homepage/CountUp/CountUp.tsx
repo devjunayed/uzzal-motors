@@ -11,7 +11,7 @@ const CountUp = () => {
 
   return (
     <div className="flex justify-center text-black mb-24">
-      <div className="bg-cyan-100 flex justify-evenly py-10 w-full lg:w-9/12 rounded-lg">
+      <div className="bg-[#B5EEFF] flex justify-evenly py-10 w-full lg:w-9/12 rounded-lg">
         <div className="text-center">
           <div className="flex font-lobster gap-1 items-center justify-center text-xl lg:text-3xl">
             <Count enableScrollSpy end={60} /> +

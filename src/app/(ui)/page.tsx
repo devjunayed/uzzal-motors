@@ -1,10 +1,9 @@
-import Banner from '@/components/ui/Banner/Banner'
-import CountUp from '@/components/ui/CountUp/CountUp'
-import Footer from '@/components/ui/Footer/Footer'
-import Heading from '@/components/ui/Heading/Heading'
-import Navbar from '@/components/ui/Navbar/Navbar'
-import OurEquipment from '@/components/ui/OurEquipment/OurEquipment'
-import WhyUs from '@/components/ui/WhyUs/WhyUs'
+import Banner from '@/components/homepage/Banner/Banner'
+import CountUp from '@/components/homepage/CountUp/CountUp'
+import Footer from '@/components/homepage/Footer/Footer'
+import Heading from '@/components/homepage/Heading/Heading'
+import OurEquipment from '@/components/homepage/OurEquipment/OurEquipment'
+import WhyUs from '@/components/homepage/WhyUs/WhyUs'
 import React from 'react'
 
 const Home = () => {

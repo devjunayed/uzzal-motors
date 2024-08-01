@@ -1,3 +1,4 @@
+import PrintIdCard from '@/components/dashboard/PrintIdCard/PrintIdCard';
 import React from 'react';
 
 // Function to generate static paths
@@ -15,17 +16,19 @@ async function getEmployeeData(employeeId: string) {
   return user;
 }
 
+export const metadata = {
+  title: "Uzzal Motors | Employee Id card",
+}
+
 // Page Component
 const Employee = async ({ params }: { params: { employeeId: string } }) => {
   const user = await getEmployeeData(params.employeeId);
 
+  console.log(user);
+
   return (
     <div>
-      <h1>User Information</h1>
-      <p>ID: {user.id}</p>
-      <p>Name: {user.name}</p>
-      <p>Email: {user.email}</p>
-      <p>Phone: {user.phone}</p>
+      <PrintIdCard {...user} />
     </div>
   );
 };
