@@ -9,5 +9,14 @@
 }
 html,
 body{
+    color: black;
     background-color: white;
+}
+
+label{
+    font-size: small;
+}
+input{
+    padding: 8px 0px;
+    border: 1px solid lightgray;
 }
