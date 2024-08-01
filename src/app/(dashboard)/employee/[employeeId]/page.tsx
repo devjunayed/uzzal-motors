@@ -5,19 +5,19 @@ export async function generateStaticParams() {
   const users = await fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json());
 
   return users.map((user: { id: number }) => ({
-    userId: user.id.toString(), // Ensure the ID is a string
+    employeeId: user.id.toString(), // Ensure the ID is a string
   }));
 }
 
 // Function to fetch data for a specific user
-async function getUserData(userId: string) {
-  const user = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`).then((res) => res.json());
+async function getEmployeeData(employeeId: string) {
+  const user = await fetch(`https://jsonplaceholder.typicode.com/users/${employeeId}`).then((res) => res.json());
   return user;
 }
 
 // Page Component
-const UserPage = async ({ params }: { params: { userId: string } }) => {
-  const user = await getUserData(params.userId);
+const Employee = async ({ params }: { params: { employeeId: string } }) => {
+  const user = await getEmployeeData(params.employeeId);
 
   return (
     <div>
@@ -30,4 +30,4 @@ const UserPage = async ({ params }: { params: { userId: string } }) => {
   );
 };
 
-export default UserPage;
+export default Employee;
