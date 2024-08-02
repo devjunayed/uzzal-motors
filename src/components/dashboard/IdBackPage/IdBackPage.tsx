@@ -4,9 +4,9 @@ import { RxAvatar } from "react-icons/rx";
 
 const IdBackPage = () => {
   return (
-    <div className="h-[317px] relative text-black w-[196px] bg-white border-[1px] text-xs border-black border-dotted rounded-md">
+    <div className="h-[317px] relative text-black w-[196px] bg-white border-[1px] text-xs border-black border-dashed rounded-md">
       {/* Content */}
-      <div className="p-4 mt-4">
+      <div className="p-4  border-t-8">
         <div className="flex justify-center">
           <RxAvatar className="size-24" />
         </div>
