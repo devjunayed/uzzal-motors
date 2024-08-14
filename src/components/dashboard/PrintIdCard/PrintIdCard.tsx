@@ -1,22 +1,24 @@
 "use client";
-import WaveOne from "@/components/Background/WaveOne";
-import { ReactInstance, useRef } from "react";
+import { useRef } from "react";
 import { MdPrint } from "react-icons/md";
-import { RxAvatar } from "react-icons/rx";
 import { useReactToPrint } from "react-to-print";
 import IdFrontPage from "../IdFrontPage/IdFrontPage";
 import IdBackPage from "../IdBackPage/IdBackPage";
 
+interface PrintIdCardProps {
+  id: string;
+  name: string;
+  address: {
+    street: string;
+  };
+  phone: string;
+}
 export default function PrintIdCard({
   id,
   name,
-  username,
-  email,
   address,
   phone,
-  website,
-  company,
-}) {
+}: PrintIdCardProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const handlePrint = useReactToPrint({
     content: () => contentRef.current,

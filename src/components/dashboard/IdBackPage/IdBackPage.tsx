@@ -1,4 +1,4 @@
-import WaveOne from "@/components/Background/WaveOne";
+import WaveOne from "../../background/WaveOne";
 import React from "react";
 import { RxAvatar } from "react-icons/rx";
 

@@ -1,8 +1,18 @@
-import WaveOne from "@/components/Background/WaveOne";
+import WaveOne from "../../background/WaveOne";
 import React from "react";
 import { RxAvatar } from "react-icons/rx";
 
-const IdFrontPage = ({id, name, address, phone}) => {
+
+interface IdFrontPageProps {
+  id: string;
+  name: string;
+  address: {
+    street: string;
+  };
+  phone: string;
+}
+
+const IdFrontPage = ({id, name, address, phone}: IdFrontPageProps) => {
   return (
     <div className="h-[317px] relative text-black w-[196px] bg-white border-[1px] text-xs border-black border-dashed rounded-md">
       {/* Content */}
@@ -14,8 +24,8 @@ const IdFrontPage = ({id, name, address, phone}) => {
         <div className="mt-4">
           <div>ID: {id}</div>
           <div>Name: {name}</div>
-          <div>Address: {`${address.street},`}</div>
-          <div>Phone: {`${address.street},`}</div>
+          <div>Address: {`${address?.street},`}</div>
+          <div>Phone: {`${phone}`}</div>
         </div>
       </div>
       {/* Svg image */}

@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 
-const Container = ({children}) => {
+interface TContainerProps{
+  children: ReactNode
+}
+
+const Container = ({children}: TContainerProps) => {
   return (
     <div className="mx-10">
       {children}
