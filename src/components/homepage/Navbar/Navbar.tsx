@@ -35,7 +35,9 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="inline-flex flex-shrink-0 ml-3 items-center h-[3rem] text-xl ">UZZAL MOTOR</a>
+        <a href="/">
+          <img src="/logo/logo.svg" className="w-16 ml-4" alt="logo" />
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

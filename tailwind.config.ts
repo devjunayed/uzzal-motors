@@ -13,6 +13,9 @@ const config: Config = {
     colors: {
       ...colors,
       black: "#000000",
+      primary: {
+        DEFAULT: "#FF0000"
+      },
       selective_yellow: {
         DEFAULT: "#ffb508",
         100: "#352500",
