@@ -3,7 +3,7 @@ import { getCookie, setCookie } from "@/utils/lib";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, message, Form, Input, Flex } from "antd";
 import { useRouter } from "next/navigation";
-useRouter
+useRouter;
 const LoginForm = () => {
   const router = useRouter();
   const [messageApi, contextHolder] = message.useMessage();
@@ -29,11 +29,8 @@ const LoginForm = () => {
               if (data.success) {
                 message.success("Logged in successfully");
                 setCookie(data.data);
-                const token = getCookie();
 
-                if (token) {
-                 router.replace("/dashboard");
-                }
+                router.replace("/dashboard");
               } else {
                 message.error(data.message);
               }
@@ -48,7 +45,7 @@ const LoginForm = () => {
     <div className="h-[100vh] bg-federal_blue text-black w-full flex items-center justify-center">
       {contextHolder}
       <div className="flex flex-col gap-2  w-96 p-4 bg-white border border-1  rounded-md">
-        <h1 className="mx-auto text-2xl uppercase italic my-4">Uzzal Motor</h1>
+        <img className="size-24 mx-auto" src="/logo/logo.svg" alt="" />
         <Form
           name="login"
           initialValues={{ remember: true }}
