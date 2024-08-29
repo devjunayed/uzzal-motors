@@ -53,7 +53,7 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({children}) => {
   };
 
   return (
-    <div className="min-h-[100vh] bg-white">
+    <div className="min-h-[100vh] bg-white ">
       <Header
         className="flex items-center"
         style={{ padding: 0, background: "white" }}
