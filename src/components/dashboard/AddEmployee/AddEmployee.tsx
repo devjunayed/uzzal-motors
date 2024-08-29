@@ -64,7 +64,7 @@ const AddEmployee: React.FC = () => {
 
   return (
     <Form
-    className="border-2 mx-auto"
+    className=" mx-auto"
       {...layout}
       name="nest-messages"
       onFinish={onFinish}

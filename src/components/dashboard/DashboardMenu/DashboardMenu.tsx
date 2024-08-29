@@ -6,7 +6,7 @@ import {
   TeamOutlined,
   FileProtectOutlined,
 } from "@ant-design/icons";
-import { Layout, Menu, MenuProps, theme } from "antd";
+import { Layout, Menu, MenuProps } from "antd";
 import { useRouter } from "next/navigation";
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -31,7 +31,7 @@ const items: MenuItem[] = [
   },
   {
     icon: FileProtectOutlined,
-    label: "Issue certificate",
+    label: "Issue Certificate",
     path: "/issue-certificate",
   },
 ].map((item) => ({
@@ -40,12 +40,11 @@ const items: MenuItem[] = [
   label: item.label,
 }));
 
-
 type DashboardMenuProps = {
-  children: ReactNode
-}
+  children: ReactNode;
+};
 
-const DashboardMenu: React.FC<DashboardMenuProps> = ({children}) => {
+const DashboardMenu: React.FC<DashboardMenuProps> = ({ children }) => {
   const router = useRouter();
 
   const menuSwitch: MenuProps["onClick"] = (e) => {
@@ -53,15 +52,17 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({children}) => {
   };
 
   return (
-    <div className="min-h-[100vh] bg-white ">
+    <div className="min-h-[100vh] bg-white">
       <Header
-        className="flex items-center"
+        className="fixed w-full top-0 left-0 z-10"
         style={{ padding: 0, background: "white" }}
       >
-        <img src="/logo/logo.svg" className=" ml-10 size-20" alt="" />
+        <div className="flex items-center h-full">
+          <img src="/logo/logo.svg" className="ml-10 size-20" alt="Logo" />
+        </div>
       </Header>
 
-      <Layout className="min-h-[100%]">
+      <Layout className="min-h-[100%] mt-20 bg-white fixed h-full w-full top-0 left-0">
         <Sider
           className="mt-6"
           breakpoint="lg"
@@ -76,28 +77,37 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({children}) => {
           <Menu
             onClick={menuSwitch}
             theme="light"
-            className="min-h-[100%] bg-white"
+            className="bg-white min-h-screen"
             mode="inline"
             defaultSelectedKeys={[""]}
             items={items}
           />
+          <Footer
+            className="w-full fixed bottom-0 left-0"
+            style={{ textAlign: "center" }}
+          >
+            Uzzal Motors ©{new Date().getFullYear()}
+          </Footer>
         </Sider>
         <Layout>
-          <Content style={{ margin: "24px 16px 0" }}>
+          <Content
+            style={{
+              margin: "24px 16px 125px",
+              overflowY: "auto",
+            }}
+          >
             <div
-            className="min-h-[77vh] scroll-y-auto"
+              className="min-h-[75vh]"
               style={{
                 padding: 24,
                 background: "white",
-                borderRadius: "20",
+                borderRadius: "20px",
+                overflowY: "auto",
               }}
             >
               {children}
             </div>
           </Content>
-          <Footer style={{ textAlign: "center" }}>
-            Uzzal Motors ©{new Date().getFullYear()}
-          </Footer>
         </Layout>
       </Layout>
     </div>
