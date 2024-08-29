@@ -61,7 +61,7 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({children}) => {
         <img src="/logo/logo.svg" className=" ml-10 size-20" alt="" />
       </Header>
 
-      <Layout className="min-h-screen ">
+      <Layout className="min-h-[100%]">
         <Sider
           className="mt-6"
           breakpoint="lg"
@@ -76,7 +76,7 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({children}) => {
           <Menu
             onClick={menuSwitch}
             theme="light"
-            className="min-h-screen  bg-white"
+            className="min-h-[100%] bg-white"
             mode="inline"
             defaultSelectedKeys={[""]}
             items={items}
@@ -85,9 +85,9 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({children}) => {
         <Layout>
           <Content style={{ margin: "24px 16px 0" }}>
             <div
+            className="min-h-[77vh] scroll-y-auto"
               style={{
                 padding: 24,
-                minHeight: 360,
                 background: "white",
                 borderRadius: "20",
               }}
