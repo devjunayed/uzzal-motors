@@ -15,7 +15,6 @@ export const setCookie = (token: string) => {
 export const getCookie = () => {
     const cookieStore = cookies();
     const token = cookieStore.get("token")?.value; // Get the value of the cookie
-    console.log('token', token)
     return token?.toString() ; // Return the token or null if it doesn't exist
 };
 

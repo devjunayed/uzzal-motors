@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Form, Input, InputNumber, Button, Select, DatePicker } from "antd";
+import React, { useState } from "react";
+import { Form, Input, InputNumber, Button, Select, DatePicker } from "antd"
 import withAuth from "@/utils/withAuth";
 import { PlusOutlined } from "@ant-design/icons";
 import { Image, Upload } from "antd";
 import type { GetProp, UploadFile, UploadProps } from "antd";
-import { getCookie } from "@/utils/lib";
 
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
@@ -39,22 +38,15 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
+const onFinish = (values: any) => {
+  console.log(values);
+};
+
 const AddEmployee: React.FC = () => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([]);
-
-  const [token, setToken] = useState<string>("");
-
-  // token
-
-  useEffect(() => {
-    const fetchToken = async () => {
-      const token = await getCookie();
-      setToken(token as string);
-    };
-    fetchToken();
-  }, []);
+  console.log(fileList);
   const handlePreview = async (file: UploadFile) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj as FileType);
@@ -72,47 +64,6 @@ const AddEmployee: React.FC = () => {
       <div style={{ marginTop: 8 }}>Upload</div>
     </button>
   );
-
-  const onFinish = async (values: any) => {
-    const modifiedValues = { ...values };
-    
-    // Convert the date to string format
-    modifiedValues.joiningDate = values.joiningDate.format("DD-MM-YYYY");
-    modifiedValues.birthOfDate = values.birthOfDate.format("DD-MM-YYYY");
-
-  
-    // Create a FormData object
-    const formData = new FormData();
-  
-    // Append other form values to formData
-    Object.keys(modifiedValues).forEach((key) => {
-      if (key === "address") {
-        Object.keys(modifiedValues.address).forEach((addrKey) => {
-          formData.append(`address[${addrKey}]`, modifiedValues.address[addrKey]);
-        });
-      } else {
-        formData.append(key, modifiedValues[key]);
-      }
-    });
-  
-    // Append the image file
-    if (fileList.length > 0) {
-      formData.append("image", fileList[0].originFileObj as Blob);
-    }
-  
-    // Send form data to the backend
-    const response = await fetch("http://localhost:5000/api/v1/create-employee", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
-  
-    const result = await response.json();
-    console.log(result);
-  };
-  
 
   return (
     <Form
@@ -300,16 +251,7 @@ const AddEmployee: React.FC = () => {
         label="Blood Group"
         rules={[{ required: true }]}
       >
-        <Select>
-          <Select.Option value="A+">A+</Select.Option>
-          <Select.Option value="A-">A-</Select.Option>
-          <Select.Option value="B+">B+</Select.Option>
-          <Select.Option value="B-">B-</Select.Option>
-          <Select.Option value="AB+">AB+</Select.Option>
-          <Select.Option value="AB-">AB-</Select.Option>
-          <Select.Option value="O+">O+</Select.Option>
-          <Select.Option value="O-">O-</Select.Option>
-        </Select>
+        <Input />
       </Form.Item>
 
       {/* Joining Date */}
@@ -319,6 +261,20 @@ const AddEmployee: React.FC = () => {
         rules={[{ required: true }]}
       >
         <DatePicker />
+      </Form.Item>
+
+      {/* Resigning Date */}
+      <Form.Item name="resigningDate" label="Resigning Date">
+        <DatePicker />
+      </Form.Item>
+
+      {/* Is Certificate Issued */}
+      <Form.Item
+        name="isCertificateIssued"
+        label="Is Certificate Issued?"
+        valuePropName="checked"
+      >
+        <Input type="checkbox" />
       </Form.Item>
 
       {/* Submit Button */}

@@ -83,7 +83,7 @@ const DashboardMenu: React.FC<DashboardMenuProps> = ({ children }) => {
             items={items}
           />
           <Footer
-            className="w-full fixed bottom-0 left-0"
+            className="w-full z-20 fixed bottom-0 left-0"
             style={{ textAlign: "center" }}
           >
             Uzzal Motors ©{new Date().getFullYear()}
