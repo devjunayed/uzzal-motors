@@ -1,12 +1,21 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { Form, Input, InputNumber, Button, Select, DatePicker } from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import {
+  Form,
+  Input,
+  InputNumber,
+  Button,
+  Select,
+  DatePicker,
+  message,
+} from "antd";
 import withAuth from "@/utils/withAuth";
 import { PlusOutlined } from "@ant-design/icons";
 import { Image, Upload } from "antd";
 import type { GetProp, UploadFile, UploadProps } from "antd";
-import { getCookie } from "@/utils/lib";
+import { TokenContext } from "@/app/providers";
 
+// Types of file
 type FileType = Parameters<GetProp<UploadProps, "beforeUpload">>[0];
 
 const getBase64 = (file: FileType): Promise<string> =>
@@ -39,22 +48,15 @@ const validateMessages = {
 };
 /* eslint-enable no-template-curly-in-string */
 
+// Main function
 const AddEmployee: React.FC = () => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [fileList, setFileList] = useState<UploadFile[]>([]);
+  const [messageApi, contextHolder] = message.useMessage();
+  const token = useContext(TokenContext);
 
-  const [token, setToken] = useState<string>("");
-
-  // token
-
-  useEffect(() => {
-    const fetchToken = async () => {
-      const token = await getCookie();
-      setToken(token as string);
-    };
-    fetchToken();
-  }, []);
+  // handling image preview
   const handlePreview = async (file: UploadFile) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj as FileType);
@@ -66,6 +68,7 @@ const AddEmployee: React.FC = () => {
   const handleChange: UploadProps["onChange"] = ({ fileList: newFileList }) =>
     setFileList(newFileList);
 
+  // Button for uploading image
   const uploadButton = (
     <button style={{ border: 0, background: "none" }} type="button">
       <PlusOutlined />
@@ -73,46 +76,83 @@ const AddEmployee: React.FC = () => {
     </button>
   );
 
+  // onFinish function called upon submit
   const onFinish = async (values: any) => {
     const modifiedValues = { ...values };
-    
+
     // Convert the date to string format
     modifiedValues.joiningDate = values.joiningDate.format("DD-MM-YYYY");
     modifiedValues.birthOfDate = values.birthOfDate.format("DD-MM-YYYY");
 
-  
     // Create a FormData object
     const formData = new FormData();
-  
+
     // Append other form values to formData
     Object.keys(modifiedValues).forEach((key) => {
       if (key === "address") {
         Object.keys(modifiedValues.address).forEach((addrKey) => {
-          formData.append(`address[${addrKey}]`, modifiedValues.address[addrKey]);
+          formData.append(
+            `address[${addrKey}]`,
+            modifiedValues.address[addrKey]
+          );
         });
       } else {
         formData.append(key, modifiedValues[key]);
       }
     });
-  
+
     // Append the image file
     if (fileList.length > 0) {
       formData.append("image", fileList[0].originFileObj as Blob);
     }
-  
-    // Send form data to the backend
-    const response = await fetch("http://localhost:5000/api/v1/create-employee", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: formData,
-    });
-  
-    const result = await response.json();
-    console.log(result);
+
+    // checking if image is selected
+    if (fileList.length === 0) {
+      messageApi.open({
+        type: "error",
+        content: "Please upload image!",
+      });
+    }
+
+    if (token && fileList.length > 0) {
+      console.log("fuck u");
+      // Send form data to the backend
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/v1/create-employee",
+          {
+            method: "POST",
+            headers: {
+              Authorization: `Bearer ${token?.token}`,
+            },
+            body: formData,
+          }
+        );
+
+        if(!response.ok){
+          throw new Error("Error while responding")
+        }
+
+        const result = await response.json();
+        console.log(result);
+
+        if (result.success) {
+          messageApi.open({
+            type: "success",
+            content: `${result.message}`,
+          });
+        } else {
+          messageApi.open({
+            type: "error",
+            content: `${result.message}`,
+          });
+        }
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
-  
 
   return (
     <Form
@@ -123,6 +163,7 @@ const AddEmployee: React.FC = () => {
       style={{ maxWidth: 600 }}
       validateMessages={validateMessages}
     >
+      {contextHolder}
       {/* Image upload and preview */}
       <div className="mx-auto w-full flex justify-center mb-5">
         <Upload
