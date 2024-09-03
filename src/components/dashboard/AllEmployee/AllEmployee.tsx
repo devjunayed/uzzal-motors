@@ -1,7 +1,7 @@
-"use client"
+"use client";
 import React, { useContext, useEffect, useState } from "react";
 import { TokenContext } from "@/app/providers";
-import IdFrontPage from "../IdFrontPage/IdFrontPage";
+import AllEmployeeCard from "./AllEmployeeCard";
 
 const AllEmployee: React.FC = () => {
   const context = useContext(TokenContext);
@@ -9,8 +9,6 @@ const AllEmployee: React.FC = () => {
   // Define state to hold the fetched data
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-
-  console.log(context);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,10 +37,33 @@ const AllEmployee: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-  return <div>
-    <div>{data?.length}</div>
-    <div><IdFrontPage address={{street: ""}}  id={"" }name="" phone="" key={""} /></div>
-  </div>;
+  console.log(data);
+
+  return (
+    <div className="flex justify-center items-center">
+      <div className="flex flex-wrap gap-4 justify-center">
+        {data?.map((employee) => (
+          <div key={employee.id}>
+            <div>
+              <AllEmployeeCard 
+              designation={employee.designation}
+                imgUrl={employee.imgUrl}
+                address={{
+                  village: employee.address.village,
+                  upazila: employee.address.upazila,
+                  district: employee.address.district,
+                }}
+                id={employee.id}
+                name={employee.name}
+                phone={employee?.contactNumber}
+                key={employee.id}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default AllEmployee;
