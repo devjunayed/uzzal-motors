@@ -1,11 +1,9 @@
-import React from 'react'
-
-
+import AllEmployee from '@/components/dashboard/AllEmployee/AllEmployee'
 
 const page = () => {
   return (
     <div>
-      User
+      <AllEmployee />
     </div>
   )
 }
