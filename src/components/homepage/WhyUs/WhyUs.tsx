@@ -2,7 +2,7 @@ import { TiInputCheckedOutline } from "react-icons/ti";
 
 const WhyUs = () => {
   return (
-    <div className="hero text-black min-h-screen">
+    <div className="hero text-black">
       <div className="hero-content flex-col gap-14 lg:flex-row ">
         <img src="/images/why-us.jpg" className="lg:max-w-xl rounded-lg " />
         <div>

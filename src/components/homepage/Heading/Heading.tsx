@@ -4,7 +4,7 @@ type THeadingProps = {
 
 const Heading = ({ children }: THeadingProps) => {
   return (
-    <h1 className=" text-center text-xl lg:text-3xl text-black font-bold">
+    <h1 className="my-10 text-center text-xl lg:text-3xl text-black font-bold">
       {children}
     </h1>
   );

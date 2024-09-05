@@ -3,7 +3,7 @@ import Button from '../../ui/Button/Button';
 
 const Banner = () => {
   return (
-    <div className="hero text-black min-h-screen">
+    <div className="hero text-black min-h-[90vh]">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <img
           src="/images/banner-img.jpg"

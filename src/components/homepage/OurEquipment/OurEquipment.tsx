@@ -28,7 +28,7 @@ const OurEquipment = () => {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-4 grow mt-20">
+    <div className="grid grid-cols-2 gap-4 grow ">
       {EquipmentDeatil.map((equipment, index) => (
         <OurEquipmentCard key={index} {...equipment} />
       ))}
