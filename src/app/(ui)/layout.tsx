@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "../globals.css";
 import Navbar from "@/components/homepage/Navbar/Navbar";
 import Footer from "@/components/homepage/Footer/Footer";
-
+import Container from "@/components/ui/Container/Container";
 
 export const metadata: Metadata = {
   title: "Uzzal Motors | Home",
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <div>
           <Navbar />
-          {children}
+          <Container>{children}</Container>
           <Footer />
         </div>
       </body>

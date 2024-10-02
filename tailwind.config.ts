@@ -20,7 +20,7 @@ const config: Config = {
         DEFAULT: "#FF0000"
       },
       selective_yellow: {
-        DEFAULT: "#ffb508",
+        DEFAULT: "#78761e",
         100: "#352500",
         200: "#6a4a00",
         300: "#9f6f00",

@@ -1,11 +1,13 @@
-import React from 'react'
+import Maintenance from "@/components/ui/MaintenenceMode/Maintenance";
+import React from "react";
 
 const page = () => {
   return (
-    <div className='text-3xl min-h-[100vh] w-full flex justify-center items-center'>
-      Coming soon...
+    <div>
+      <div></div>
+      <Maintenance /> 
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

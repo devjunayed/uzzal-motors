@@ -3,18 +3,19 @@
 import Image from 'next/image';
 import { useTransform, useScroll, motion } from 'framer-motion';
 import { useRef } from 'react';
+import Maintenance from '@/components/ui/MaintenenceMode/Maintenance';
 
 const TopProjectCard = ({ i, title, description, src, link, color, progress, range, targetScale }) => {
   const container = useRef(null);
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={container} className="sticky top-24 min-h-[50vh] flex items-center justify-center">
+    <div ref={container} className="sticky top-24 min-h-[50vh] flex items-center justify-center w-full">
       <motion.div
-        className="flex flex-col relative h-[500px] origin-top w-full max-w-lg rounded-lg p-8"
-        style={{ backgroundColor: color, scale, top: `calc(5vh + ${i * 25}px)` }}
+        className="flex flex-col relative h-[500px] origin-top w-full  rounded-lg p-8"
+        style={{ background: `linear-gradient(115deg, #FF0000, #000000)`, scale, top: `calc(5vh + ${i * 25}px)` }}
       >
-        <h2 className="text-3xl font-bold mb-4">{title}</h2>
+        {/* <h2 className="text-3xl font-bold mb-4">{title}</h2>
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
             <p className="text-lg">{description}</p>
@@ -47,7 +48,8 @@ const TopProjectCard = ({ i, title, description, src, link, color, progress, ran
               />
             </motion.div>
           </div>
-        </div>
+        </div> */}
+        <Maintenance />
       </motion.div>
     </div>
   );

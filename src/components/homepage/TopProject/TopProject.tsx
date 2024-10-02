@@ -40,7 +40,7 @@ export default function TopProject() {
   ];
 
   return (
-    <main ref={container} className="min-h-screen relative">
+    <main ref={container} className="min-h-screen relative mb-24">
       {projects.map((project, i) => {
         const targetScale = 1 - (projects.length - i) * 0.05;
         return (
