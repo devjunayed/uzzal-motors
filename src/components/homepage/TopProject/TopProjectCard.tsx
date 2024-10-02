@@ -1,19 +1,48 @@
-'use client'
+"use client";
 
-import Image from 'next/image';
-import { useTransform, useScroll, motion } from 'framer-motion';
-import { useRef } from 'react';
-import Maintenance from '@/components/ui/MaintenenceMode/Maintenance';
+import Image from "next/image";
+import { useTransform, useScroll, motion } from "framer-motion";
+import { useRef } from "react";
+import Maintenance from "@/components/ui/MaintenenceMode/Maintenance";
 
-const TopProjectCard = ({ i, title, description, src, link, color, progress, range, targetScale }) => {
+interface TopProjectCardProps {
+  i: number;
+  title: string;
+  description: string;
+  src: string;
+  link: string;
+  color: string;
+  progress: any;
+  range: any;
+  targetScale: number;
+}
+
+const TopProjectCard = ({
+  i,
+  title,
+  description,
+  src,
+  link,
+  color,
+  progress,
+  range,
+  targetScale,
+}: TopProjectCardProps) => {
   const container = useRef(null);
   const scale = useTransform(progress, range, [1, targetScale]);
 
   return (
-    <div ref={container} className="sticky top-24 min-h-[50vh] flex items-center justify-center w-full">
+    <div
+      ref={container}
+      className="sticky top-24 min-h-[50vh] flex items-center justify-center w-full"
+    >
       <motion.div
         className="flex flex-col relative h-[500px] origin-top w-full  rounded-lg p-8"
-        style={{ background: `linear-gradient(115deg, #FF0000, #000000)`, scale, top: `calc(5vh + ${i * 25}px)` }}
+        style={{
+          background: `linear-gradient(115deg, #FF0000, #000000)`,
+          scale,
+          top: `calc(5vh + ${i * 25}px)`,
+        }}
       >
         {/* <h2 className="text-3xl font-bold mb-4">{title}</h2>
         <div className="flex flex-col md:flex-row gap-4">
