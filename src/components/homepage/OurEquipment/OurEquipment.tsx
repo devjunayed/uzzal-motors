@@ -1,4 +1,3 @@
-import { TiInputCheckedOutline } from "react-icons/ti";
 import OurEquipmentCard from "./OurEquipmentCard";
 
 const OurEquipment = () => {
@@ -28,7 +27,7 @@ const OurEquipment = () => {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-4 grow ">
+    <div className="grid grid-cols-1 md:grid-cols-2 justify-center items-center md:gap-4 grow ">
       {EquipmentDeatil.map((equipment, index) => (
         <OurEquipmentCard key={index} {...equipment} />
       ))}

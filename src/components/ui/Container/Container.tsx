@@ -6,7 +6,7 @@ interface TContainerProps{
 
 const Container = ({children}: TContainerProps) => {
   return (
-    <div className="mx-10 mt-28">
+    <div className="mx-1 md:mx-10 mt-28">
       {children}
     </div>
   )
