@@ -1,4 +1,3 @@
-import WaveOne from "../../background/WaveOne";
 import React from "react";
 import { RxAvatar } from "react-icons/rx";
 
@@ -17,7 +16,7 @@ const IdBackPage = () => {
       </div>
       {/* Svg image */}
       <div className="absolute bottom-0 w-full left-0">
-        <WaveOne />
+        {/* <WaveOne /> */}
       </div>
     </div>
   );

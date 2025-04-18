@@ -37,7 +37,11 @@ export default function PrintIdCard({
       <div ref={contentRef}>
         <div className="min-h-screen w-full flex items-center justify-center gap-2 ">
           {/* Front page of id */}
-          <IdFrontPage name={name} id={id} address={address} phone={phone} />
+          <IdFrontPage
+            name={name}
+            id={id}
+            phone={phone}
+          />
 
           {/* Back page of id */}
           <IdBackPage />

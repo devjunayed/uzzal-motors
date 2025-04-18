@@ -1,14 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import { Avatar } from "antd";
-import WaveOne from "../../background/WaveOne";
 import React from "react";
 import { RxAvatar } from "react-icons/rx";
 
 
 interface IdFrontPageProps {
   id: string;
-  imgUrl: string;
-  name: string;
-  address: {
+  imgUrl?: string;
+  name?: string;
+  address?: {
     village: string;
     upazila: string;
     district: string;
@@ -29,13 +29,13 @@ const IdFrontPage = ({id, imgUrl, name, address, phone}: IdFrontPageProps) => {
         <div className="mt-4">
           <div>ID: {id}</div>
           <div>Name: {name}</div>
-          <div>Address: {`${address.village}, ${address.upazila}, ${address.district}`}</div>
+          <div>Address: {`${address?.village}, ${address?.upazila}, ${address?.district}`}</div>
           <div>Phone: {`${phone}`}</div>
         </div>
       </div>
       {/* Svg image */}
       <div className="absolute bottom-0 w-full left-0">
-        <WaveOne />
+        {/* <WaveOne /> */}
       </div>
     </div>
   );
